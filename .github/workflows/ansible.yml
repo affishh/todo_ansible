@@ -33,10 +33,9 @@ jobs:
       - name: Create SSH key file
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}"  > ~/.ssh/ec2_key.pem
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > ~/.ssh/ec2_key.pem
           chmod 600 ~/.ssh/ec2_key.pem
 
       - name: Debug SSH key file
         run: ls -l ~/.ssh/ec2_key.pem
-
 
