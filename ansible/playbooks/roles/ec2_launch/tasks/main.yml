@@ -2,23 +2,23 @@
 # tasks file for ec2_launch
 - name: Adding security group
   amazon.aws.ec2_group:
-      name: default
-      description: Security group fro ec2 instance
-      region: us-east-1
-      rules: 
-        - proto: tcp
-          from_port: 3001
-          to_port: 3001
-          cidr_ip: 0.0.0.0/0
-        - proto: tcp
-          from_port: 22
-          to_port: 22
-          cidr_ip: 0.0.0.0/0
-        - proto: tcp
-          from_port: 3000
-          to_port: 3000
-          cidr_ip: 0.0.0.0/0
-      rules_egress:
-        - proto: all
-          cidr_ip: 0.0.0.0/0
-      register: security_group
+    name: default
+    description: Security group for EC2 instance
+    region: us-east-1
+    rules: 
+      - proto: tcp
+        from_port: 3001
+        to_port: 3001
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 3000
+        to_port: 3000
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: -1
+        cidr_ip: 0.0.0.0/0
+  register: security_group
