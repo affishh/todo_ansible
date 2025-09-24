@@ -3,4 +3,4 @@
 aws_region: us-east-1
 ec2_instance_type: t2.micro
 ec2_ami_id: ami-0c2b8ca1dad447f8a
-ec2_key_name: afrin
+ec2_key_name: ansible07
