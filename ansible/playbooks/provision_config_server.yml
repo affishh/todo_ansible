@@ -4,3 +4,9 @@
   gather_facts: no
   roles:
     - ec2_launch
+
+- name: configure launched instance
+  hosts: launch_instance
+  gather_facts: yes
+  roles:
+    - common

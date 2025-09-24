@@ -1,0 +1,32 @@
+---
+# tasks file for common
+- name: install packages
+  become: yes
+  package:
+    name: 
+      - nginx
+      - npm
+      - httpd
+      - nodejs
+    state: present
+    update_cache: yes
+
+- name: Start apache servive
+  become: true
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Copy source code
+  become: yes
+  synchronize:
+    src: "{{ playbook_dir }}/../../"
+    dest: "/opt/todoapp"
+    delete: yes
+    recursive: yes
+    rsync_opts:
+      - "--exclude=.git"
+      - "--exclude=ansible"
+      - "--exclude=node_modules"
+      - "--exclude=.github"
